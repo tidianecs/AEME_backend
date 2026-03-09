@@ -7,6 +7,7 @@ import com.daust.aeme_backend.report.model.report;
 import com.daust.aeme_backend.report.model.reportStatus;
 import com.daust.aeme_backend.report.service.reportService;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/reports")
@@ -17,6 +18,9 @@ public class reportController {
         this.service = service;
     }
 
+    // ==========================
+    // CREATE REPORT
+    // ==========================
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<report> create(
             @RequestParam("reportType") String reportType,
@@ -35,5 +39,32 @@ public class reportController {
         );
 
         return ResponseEntity.ok(savedReport);
+    }
+
+    // ==========================
+    // GET ALL REPORTS
+    // ==========================
+    @GetMapping
+    public ResponseEntity<List<report>> getAllReports() {
+        List<report> reports = service.getAllReports();
+        return ResponseEntity.ok(reports);
+    }
+
+    // ==========================
+    // GET REPORT BY ID
+    // ==========================
+    @GetMapping("/{id}")
+    public ResponseEntity<report> getReportById(@PathVariable Long id) {
+        report foundReport = service.getReportById(id);
+        return ResponseEntity.ok(foundReport);
+    }
+
+    // ==========================
+    // DELETE REPORT
+    // ==========================
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteReport(@PathVariable Long id) {
+        service.deleteReport(id);
+        return ResponseEntity.ok("Report deleted successfully");
     }
 }
