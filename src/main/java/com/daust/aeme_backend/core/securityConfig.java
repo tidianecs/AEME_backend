@@ -15,7 +15,7 @@ public class securityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                //.requestMatchers("/public/**").permitAll()
+                .requestMatchers("/ws-chat").permitAll()
                 .anyRequest().authenticated()
             )
             .oauth2ResourceServer(oauth -> 

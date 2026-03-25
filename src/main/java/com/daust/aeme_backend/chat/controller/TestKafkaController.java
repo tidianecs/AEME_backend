@@ -1,4 +1,4 @@
-package com.daust.aeme_backend.chat.kafka;
+package com.daust.aeme_backend.chat.controller;
 
 import com.daust.aeme_backend.chat.kafka.KafkaProducerService;
 import com.daust.aeme_backend.chat.model.ChatMessage;
